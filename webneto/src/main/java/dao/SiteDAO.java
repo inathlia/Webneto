@@ -24,10 +24,11 @@ public class SiteDAO extends DAO{
 	public boolean insert(Site site) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO site (link, logo, nome) "
+			String sql = "INSERT INTO site (link, logo, nome, id_adm) "
 		               + "VALUES ('" + site.getLink() + "', '"
 		               + site.getLogo() + "', " 
-                       + site.getNome() + "');";
+					   + site.getNome() + "', "
+                       + site.getIdAdm() + "');";
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -47,7 +48,7 @@ public class SiteDAO extends DAO{
 			String sql = "SELECT * FROM site WHERE id="+id;
 			ResultSet rs = st.executeQuery(sql);	
 	        if(rs.next()){            
-	        	 site = new Site(rs.getInt("id"), rs.getString("link"), rs.getString("logo"), rs.getString("nome"));
+	        	 site = new Site(rs.getInt("id"), rs.getString("link"), rs.getString("logo"), rs.getString("nome"), rs.getInt("id_adm"));
 	        }
 	        st.close();
 		} catch (Exception e) {
@@ -80,7 +81,7 @@ public class SiteDAO extends DAO{
 			String sql = "SELECT * FROM site" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
-	        	Site s = new Site(rs.getInt("id"), rs.getString("link"), rs.getString("logo"), rs.getString("nome"));
+	        	Site s = new Site(rs.getInt("id"), rs.getString("link"), rs.getString("logo"), rs.getString("nome"), rs.getInt("id"));
 	            sites.add(s);
 	        }
 	        st.close();

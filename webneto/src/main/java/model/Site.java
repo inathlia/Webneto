@@ -1,67 +1,77 @@
 package model;
 
 public class Site {
-	private int id;
-	private String link, logo, nome; //lembrete; logo é o caminho do diretório onde a img está
-	
-	public Site() {
-		id = -1;
-		link = "";
-		logo = "";
-		nome = "";
-	}
+    private int id, id_adm;
+    private String link, logo, nome; //lembrete; logo ï¿½ o caminho do diretï¿½rio onde a img estï¿½
+    
+    public Site() {
+        id = -1;
+        link = "";
+        logo = "";
+        nome = "";
+        id_adm = -1;
+    }
 
-	public Site(int id, String link, String logo, String nome) {
-		setId(id);
-		setLink(link);
-		setLogo(logo);
-		setNome(nome);
-	}		
-	
-	public int getId() {
-		return id;
-	}
+    public Site(int id, String link, String logo, String nome, int id_adm) {
+        setId(id);
+        setLink(link);
+        setLogo(logo);
+        setNome(nome);
+        setIdAdm(id_adm);
+    }       
+    
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getLink() {
-		return link;
-	}
+    public String getLink() {
+        return link;
+    }
 
-	public void setLink(String link) {
-		this.link = link;
-	}
+    public void setLink(String link) {
+        this.link = link;
+    }
 
-	
-	public String getLogo() {
-		return logo;
-	}
+    
+    public String getLogo() {
+        return logo;
+    }
 
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
     public String getNome() {
-		return nome;
-	}
+        return nome;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	/**
-	 * Método sobreposto da classe Object. É executado quando um objeto precisa
-	 * ser exibido na forma de String.
-	 */
-	@Override
-	public String toString() {
-		return "Nome: " + nome + "   Link: " + link;
-	}
-	
-	// @Override
-	// public boolean equals(Object obj) {
-	// 	return (this.getID() == ((Produto) obj).getID());
-	// }	
+    public int getIdAdm() {
+        return id_adm;
+    }
+
+    public void setIdAdm(int id_adm) {
+        this.id_adm = id_adm;
+    }
+
+    /**
+     * Mï¿½todo sobreposto da classe Object. ï¿½ executado quando um objeto precisa
+     * ser exibido na forma de String.
+     */
+    @Override
+    public String toString() {
+        return "Nome: " + nome + "   Link: " + link;
+    }
+    
+    // @Override
+    // public boolean equals(Object obj) {
+    //  return (this.getID() == ((Produto) obj).getID());
+    // }    
 }

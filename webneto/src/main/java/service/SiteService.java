@@ -18,10 +18,12 @@ public class SiteService {
 		String link = request.queryParams("link");
 		String logo = request.queryParams("logo");
 		String nome = request.queryParams("nome");
+		int id_adm = Integer.parseInt(request.queryParams("id_adm"));
+
 
 		//int id = siteDAO.getMaxId() + 1;
 
-		Site site = new Site(-1, link, logo, nome);
+		Site site = new Site(-1, link, logo, nome, id_adm);
 
 		siteDAO.insert(site);
 
@@ -43,10 +45,11 @@ public class SiteService {
             		"\t<link>" + site.getLink() + "</link>\n" +
             		"\t<logo>" + site.getLogo() + "</logo>\n" +
 					"\t<nome>" + site.getNome() + "</nome>\n" +
+					"\t<id_adm>" + site.getIdAdm() + "</id_adm>\n" +
             		"</site>\n";
         } else {
             response.status(404); // 404 Not found
-            return "Site " + id + " não encontrado.";
+            return "Site " + id + " nï¿½o encontrado.";
         }
 
 	}
@@ -60,13 +63,14 @@ public class SiteService {
         	site.setLink(request.queryParams("link"));
         	site.setLogo(request.queryParams("logo"));
 			site.setNome(request.queryParams("nome"));
+			site.setIdAdm(Integer.parseInt(request.queryParams("id_adm")));
 
         	siteDAO.update(site);
         	
             return id;
         } else {
             response.status(404); // 404 Not found
-            return "Site não encontrado.";
+            return "Site nï¿½o encontrado.";
         }
 
 	}
@@ -84,7 +88,7 @@ public class SiteService {
         	return id;
         } else {
             response.status(404); // 404 Not found
-            return "Site não encontrado.";
+            return "Site nï¿½o encontrado.";
         }
 	}
 
