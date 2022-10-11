@@ -12,7 +12,7 @@ public class TesteConexao {
         
         AdmDAO admDAO = new AdmDAO();
         
-        Adm adm = new Adm(-1, "fulano", "234");
+        Adm adm = new Adm(-1, "ciclano", "234");
         if(admDAO.insert(adm) == true) {
             System.out.println("Inserção com sucesso -> " + adm.toString());
         }
