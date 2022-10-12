@@ -9,7 +9,7 @@ public class SiteAplicacao {
 	private static SiteService siteService = new SiteService();
 	
     public static void main(String[] args) {
-        port(6789); //verificar porta
+        port(5678); //verificar porta
 
         post("/site", (request, response) -> siteService.add(request, response));
 

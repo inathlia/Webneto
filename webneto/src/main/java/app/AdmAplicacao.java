@@ -9,7 +9,7 @@ public class AdmAplicacao {
 	private static AdmService admService = new AdmService();
 	
     public static void main(String[] args) {
-        port(6789); //verificar porta
+        port(4567); //verificar porta
 
         post("/adm", (request, response) -> admService.add(request, response));
 
