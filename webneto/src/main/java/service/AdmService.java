@@ -18,10 +18,12 @@ public class AdmService {
 	public Object add(Request request, Response response) {
 		String nome = request.queryParams("nome");
 		String senha = request.queryParams("senha");
+		String usuario = request.queryParams("usuario");
+		String email = request.queryParams("email");
 
 		//int id = admDAO.getMaxId() + 1; //criar maxId nas classes de DAO
 
-		Adm adm = new Adm(-1, nome, senha); //Adm(-1, nome, senha) -> PASSA O ID COMO PARAMETRO MAS QUANDO DER O INSERT VAI IGNORAR POR SER SERIAL
+		Adm adm = new Adm(-1, nome, senha, usuario, email); //Adm(-1, nome, senha) -> PASSA O ID COMO PARAMETRO MAS QUANDO DER O INSERT VAI IGNORAR POR SER SERIAL
 
 		admDAO.insert(adm); //AQUI É INSERT
 
@@ -42,6 +44,8 @@ public class AdmService {
             		"\t<id>" + adm.getId() + "</id>\n" +
             		"\t<nome>" + adm.getNome() + "</nome>\n" +
             		"\t<senha>" + adm.getSenha() + "</senha>\n" +
+            		"\t<usuario>" + adm.getUsuario() + "</usuario>\n" +
+            		"\t<email>" + adm.getEmail() + "</email>\n" +
             		"</adm>\n";
         } else {
             response.status(404); // 404 Not found
@@ -58,6 +62,8 @@ public class AdmService {
         if (adm != null) {
         	adm.setNome(request.queryParams("nome"));
         	adm.setSenha(request.queryParams("senha"));
+        	adm.setUsuario(request.queryParams("usuario"));
+        	adm.setEmail(request.queryParams("email"));
 
         	admDAO.update(adm);
         	

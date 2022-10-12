@@ -25,9 +25,11 @@ public class AdmDAO extends DAO {
 	public boolean insert(Adm adm) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO adm (nome, senha) "
+			String sql = "INSERT INTO adm (nome, senha, usuario, email) "
 		               + "VALUES ('" + adm.getNome() + "', '"
-		               + adm.getSenha() + "');";
+		               + adm.getSenha() + "', '"
+		               + adm.getUsuario() + "', '"
+		               + adm.getEmail() + "');";
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -47,7 +49,7 @@ public class AdmDAO extends DAO {
 			String sql = "SELECT * FROM adm WHERE id="+id;
 			ResultSet rs = st.executeQuery(sql);	
 	        if(rs.next()){            
-	        	 adm = new Adm(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"));
+	        	 adm = new Adm(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("usuario"), rs.getString("email"));
 	        }
 	        st.close();
 		} catch (Exception e) {
@@ -71,6 +73,15 @@ public class AdmDAO extends DAO {
 		return get("nome");		
 	}
 	
+	public List<Adm> getOrderByUsuario(){
+	    return get("usuario");
+	}
+	
+	public List<Adm> getOrderByEmail(){
+	    return get("email");
+	}
+	
+	
 	
 	private List<Adm> get(String orderBy) {
 		List<Adm> adms = new ArrayList<Adm>();
@@ -80,7 +91,7 @@ public class AdmDAO extends DAO {
 			String sql = "SELECT * FROM adm" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
-	        	Adm a = new Adm(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"));
+	        	Adm a = new Adm(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("usuario"), rs.getString("email"));
 	            adms.add(a);
 	        }
 	        st.close();
@@ -92,21 +103,23 @@ public class AdmDAO extends DAO {
 	
 	
 	public boolean update(Adm adm) {
-		boolean status = false;
-		try {  
-			String sql = "UPDATE adm SET nome = '" + adm.getNome() + "', "
-					   + "senha = '" + adm.getSenha() + "'" + "WHERE id = " + adm.getId();
-			PreparedStatement st = conexao.prepareStatement(sql);
-		  
-			st.executeUpdate();
-			st.close();
-			status = true;
-		} catch (SQLException u) {  
-			throw new RuntimeException(u);
-		}
-		return status;
-	}
-	
+        boolean status = false;
+        try {  
+            String sql = "UPDATE adm SET nome = '" + adm.getNome() + "', "
+                        + "senha = '" + adm.getSenha() + "'"
+                        + "email = '" + adm.getEmail() + "'"
+                        + "usuario = '" + adm.getUsuario() + "'"
+                        + "WHERE id = " + adm.getId();
+            PreparedStatement st = conexao.prepareStatement(sql);
+          
+            st.executeUpdate();
+            st.close();
+            status = true;
+        } catch (SQLException u) {  
+            throw new RuntimeException(u);
+        }
+        return status;
+    }
 	
 	public boolean delete(int id) {
 		boolean status = false;
