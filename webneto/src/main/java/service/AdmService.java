@@ -21,14 +21,15 @@ public class AdmService {
 		String usuario = request.queryParams("usuario");
 		String email = request.queryParams("email");
 
-		//int id = admDAO.getMaxId() + 1; //criar maxId nas classes de DAO
+		Adm adm = new Adm(-1, nome, senha, usuario, email); //PASSA O ID COMO PARAMETRO MAS QUANDO DER O INSERT VAI IGNORAR POR SER SERIAL
 
-		Adm adm = new Adm(-1, nome, senha, usuario, email); //Adm(-1, nome, senha) -> PASSA O ID COMO PARAMETRO MAS QUANDO DER O INSERT VAI IGNORAR POR SER SERIAL
+		
+		if(admDAO.insert(adm)) {
 
-		admDAO.insert(adm); //AQUI É INSERT
-
-		response.status(201); // 201 Created
-		return nome;
+		    response.status(201); // 201 Created
+		    return "Administrador adicionado com sucesso!";
+		}
+		return "Falha ao adicionar administrador";
 	}
 
 	public Object get(Request request, Response response) {
@@ -53,6 +54,27 @@ public class AdmService {
         }
 
 	}
+	
+	public Object login(Request request, Response response) {
+        String usuario = request.params(":usuario");
+        String senha = request.params(":senha");
+        
+        Adm adm = (Adm) admDAO.login(usuario);
+        
+        if (adm != null) {
+            response.header("Content-Type", "application/xml");
+            response.header("Content-Encoding", "UTF-8");
+
+            if(adm.getSenha() == senha) //efetuar o login
+                return "Usuário" + usuario + "logado";
+            else return "Login ou senha incorretos";
+            
+        } else {
+            response.status(404); // 404 Not found
+            return "Administrador " + usuario + " não encontrado.";
+        }
+
+    }
 
 	public Object update(Request request, Response response) {
         int id = Integer.parseInt(request.params(":id"));
