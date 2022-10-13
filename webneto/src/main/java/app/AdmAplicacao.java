@@ -14,6 +14,8 @@ public class AdmAplicacao {
         post("/adm", (request, response) -> admService.add(request, response));
 
         get("/adm/:id", (request, response) -> admService.get(request, response));
+        
+        get("/adm/login/:usuario/:senha", (request, response) -> admService.login(request, response));
 
         get("/adm/update/:id", (request, response) -> admService.update(request, response));
 
