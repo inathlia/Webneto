@@ -18,13 +18,15 @@ public class AllAplicacao {
         });
         
         get("/login", (request, response) -> {
-            Object status = null;
-            status = AllService.loginAdm(request, response) ;
+//            Object status = null;
+//            status = AllService.loginAdm(request, response) ;
             
-            if(status.toString() == "true") {
-                response.redirect("http://localhost:5678/resources/public/site-adm/html/index.html");
+            if((boolean) AllService.loginAdm(request, response)) {
+                response.redirect("http://localhost/Webneto/webneto/src/main/resources/public/site-adm/html/index.html");
+                //return "Logado";
             }else {
-                response.redirect("http://localhost:5678/resources/public/site-adm/html/Perfil.html");
+                response.redirect("http://localhost/Webneto/webneto/src/main/resources/public/site-adm/html/Perfil.html");
+                //return "Não logado";
             }
             
             return null;
