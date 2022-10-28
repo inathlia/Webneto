@@ -1,7 +1,7 @@
 
 const loginPath = 'Perfil2.html';
 
-function initCreateUser() {
+/*function initCreateUser() {
   const formCreate = document.querySelector('[data-form="create"]');
   const successMessage = document.querySelector('[data-form="success"]');
 
@@ -31,9 +31,9 @@ function initCreateUser() {
   if(formCreate) {
     formCreate.addEventListener('submit', createUser)
   }
-}
+}*/
 
-function initListUsers() {
+/*function initListUsers() {
   const listWrapper = document.querySelector('[data-list="wrapper"]');
   let usersList = '';
 
@@ -53,9 +53,9 @@ function initListUsers() {
 
     listWrapper.innerHTML = usersList;
   }
-}
+}*/
 
-function initLogin() {
+/*function initLogin() {
   const formLogin = document.querySelector('[data-form="login"]');
   const errorMessage = document.querySelector('[data-form="error"]');
 
@@ -88,10 +88,10 @@ function initLogin() {
   if(formLogin) {
     formLogin.addEventListener('submit', login)
   }
-}
+}*/
 
 
-function initLogout() {
+/*function initLogout() {
   const logoutButton = document.querySelector('[data-logout]');
 
   function logout(e) {
@@ -105,9 +105,9 @@ function initLogout() {
   if(logoutButton) {
     logoutButton.addEventListener('click', logout)
   }
-}
+}*/
 
-function initStartSistem() {
+/*function initStartSistem() {
 
   async function starting() {
     try {
@@ -169,7 +169,7 @@ function initStartSistem() {
 
   starting();
 
-}
+}*/
 
 function initWellcome() {
   const wellcomeBox = document.querySelector('[data-wellcome]');

@@ -26,8 +26,8 @@ public class AdmDAO extends DAO {
 		boolean status = false;
 		try {
 			String sql = "INSERT INTO adm (nome, senha, usuario, email) "
-		               + "VALUES ('" + adm.getNome() + "', '"
-		               + adm.getSenha() + "', '"
+		               + "VALUES ('" + adm.getNome() + "', md5('"
+		               + adm.getSenha() + "'), '"
 		               + adm.getUsuario() + "', '"
 		               + adm.getEmail() + "');";
 			PreparedStatement st = conexao.prepareStatement(sql);
@@ -58,22 +58,23 @@ public class AdmDAO extends DAO {
 		return adm;
 	}
 	
-	public Adm login(String usuario) {
-	    Adm adm = null;
-	    
-	    try {
+	public Adm loginValidation(String usuario, String senha) {
+        Adm adm = null;
+        try {
+            
             Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            String sql = "SELECT * FROM adm WHERE id="+usuario;
-            ResultSet rs = st.executeQuery(sql);    
-            if(rs.next()){            
-                 adm = new Adm(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("usuario"), rs.getString("email"));
+            String sql = "SELECT * FROM adm WHERE usuario = '" + usuario + "' AND senha = md5('" + senha + "')";
+            ResultSet rs = st.executeQuery(sql);
+            
+            if(rs.next()) {
+                adm = new Adm(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("usuario"), rs.getString("email"));
             }
             st.close();
-        } catch (Exception e) {
+        }catch (Exception e) {
             System.err.println(e.getMessage());
         }
         return adm;
-	}
+    }
 	
 	
 	public List<Adm> get() {

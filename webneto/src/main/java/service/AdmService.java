@@ -21,7 +21,7 @@ public class AdmService {
 		String usuario = request.queryParams("usuario");
 		String email = request.queryParams("email");
 
-		Adm adm = new Adm(-1, nome, senha, usuario, email); //PASSA O ID COMO PARAMETRO MAS QUANDO DER O INSERT VAI IGNORAR POR SER SERIAL
+		Adm adm = new Adm(-1, nome, senha, usuario, email); 
 
 		
 		if(admDAO.insert(adm)) {
@@ -31,6 +31,32 @@ public class AdmService {
 		}
 		return "Falha ao adicionar administrador";
 	}
+	
+	public Object loginAdm(Request request, Response response) {
+        Adm adm = null;
+        boolean status = false;
+        
+        String usuario = request.queryParams("usuario");
+        String senha = request.queryParams("senha");
+        
+        
+        adm = admDAO.loginValidation(usuario, senha);
+
+        if(adm != null) {
+            status = true;
+        }
+        
+//        String admTmp[] = adm.getNome().split(" ");
+//        System.out.print(admTmp[0]);
+//        
+//        String tokenID = adm.getId()+"_0_"+admTmp[0];
+//    
+//        
+//        response.cookie("token", tokenID);
+//        response.cookie("isLogged", "true");
+        
+        return status;
+    }
 
 	public Object get(Request request, Response response) {
 		int id = Integer.parseInt(request.params(":id"));
@@ -54,27 +80,6 @@ public class AdmService {
         }
 
 	}
-	
-	public Object login(Request request, Response response) {
-        String usuario = request.params(":usuario");
-        String senha = request.params(":senha");
-        
-        Adm adm = (Adm) admDAO.login(usuario);
-        
-        if (adm != null) {
-            response.header("Content-Type", "application/xml");
-            response.header("Content-Encoding", "UTF-8");
-
-            if(adm.getSenha() == senha) //efetuar o login
-                return "Usuário" + usuario + "logado";
-            else return "Login ou senha incorretos";
-            
-        } else {
-            response.status(404); // 404 Not found
-            return "Administrador " + usuario + " não encontrado.";
-        }
-
-    }
 
 	public Object update(Request request, Response response) {
         int id = Integer.parseInt(request.params(":id"));
