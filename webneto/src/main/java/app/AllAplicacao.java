@@ -13,19 +13,19 @@ public class AllAplicacao {
       //------------------ ADM -----------------------
         post("/adm", (request, response) -> {
             allService.addAdm(request, response);
-            response.redirect("http://localhost/Webneto/webneto/src/main/resources/public/site-adm/html/Perfil.html");
+            response.redirect("http://localhost/Webneto/webneto/src/main/resources/public/site-adm/html/index.html");
             return "Adm cadastrado";
         });
         
-        get("/login", (request, response) -> {
+        post("/login", (request, response) -> {
 //            Object status = null;
 //            status = AllService.loginAdm(request, response) ;
             
             if((boolean) AllService.loginAdm(request, response)) {
-                response.redirect("http://localhost/Webneto/webneto/src/main/resources/public/site-adm/html/index.html");
+                response.redirect("http://localhost/Webneto/webneto/src/main/resources/public/site-adm/html/cadastros.html");
                 //return "Logado";
             }else {
-                response.redirect("http://localhost/Webneto/webneto/src/main/resources/public/site-adm/html/Perfil.html");
+                response.redirect("http://localhost/Webneto/webneto/src/main/resources/public/site-adm/html/index.html");
                 //return "Não logado";
             }
             
