@@ -71,34 +71,36 @@
     <nav>
       
     </nav>
-    <h1> Cadastrar Site </h1>
-    <form action="" method="">
-      <label for="nome">Nome do Site</label>
-      <input
-        required
-        name="nome"
-        id="nome"
-        class="input-tutorial"
-      />
+    <div class="row">
+        <div class="col">
+            <h1> Excluir Site </h1>
+            <form action="" method="">
+                <label for="titulo">Titulo do Tutorial</label>
+                <input
+                    required
+                    name="titulo"
+                    id="titulo"
+                    class="input-tutorial"
+                />
 
-      <label for="link">Link</label>
-      <input
-        required
-        name="link"
-        id="link"
-        class="input-tutorial"
-      />
+            <input type="submit" value="Enviar" onclick="addService();" />
+            </form>
+        </div>
 
-      <label for="logo">Logo</label>
-      <input
-        required
-        name="logo"
-        id="logo"
-        class="input-tutorial"
-      />
-
-      <input type="submit" value="Enviar" onclick="addService();" />
-    </form>
+        <div class="col">
+            <h1> Excluir Tutorial </h1>
+            <form action="" method="">
+                <label for="nome">Nome do Site</label>
+                <input
+                    required
+                    name="nome"
+                    id="nome"
+                    class="input-tutorial"
+                />
+            <input type="submit" value="Enviar" onclick="addService();" />
+            </form>
+        </div>
+    </div>
   </main>
 
   <footer>
