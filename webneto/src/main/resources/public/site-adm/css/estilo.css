@@ -53,6 +53,10 @@
         border-color: #5253FF;
     }
 
+    .btn:hover{
+        background-color: #3B14A8;
+    }
+
     .botao:hover{
         background-color: #5253FF;
         color: #f2f2f2;
