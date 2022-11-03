@@ -23,7 +23,7 @@ public class AdmAplicacao {
 
         get("/adm/update/:id", (request, response) -> admService.update(request, response));
 
-        get("/adm/delete/:id", (request, response) -> admService.remove(request, response));
+        //get("/adm/delete/:id", (request, response) -> admService.remove(request, response));
 
         //get("/adm", (request, response) -> admService.getAll(request, response));
                

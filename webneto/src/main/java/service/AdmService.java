@@ -102,22 +102,22 @@ public class AdmService {
 
 	}
 
-	public Object remove(Request request, Response response) {
-        int id = Integer.parseInt(request.params(":id"));
-
-        Adm adm = (Adm) admDAO.get(id);
-
-        if (adm != null) {
-
-            admDAO.delete(id); //DELETE
-
-            response.status(200); // success
-        	return id;
-        } else {
-            response.status(404); // 404 Not found
-            return "Adminsitrador não encontrado.";
-        }
-	}
+//	public Object remove(Request request, Response response) {
+//        int id = Integer.parseInt(request.params(":id"));
+//
+//        Adm adm = (Adm) admDAO.get(id);
+//
+//        if (adm != null) {
+//
+//            admDAO.delete(id); //DELETE
+//
+//            response.status(200); // success
+//        	return id;
+//        } else {
+//            response.status(404); // 404 Not found
+//            return "Adminsitrador não encontrado.";
+//        }
+//	}
 
 	// public Object getAll(Request request, Response response) {
 	// 	StringBuffer returnValue = new StringBuffer("<adm type=\"array\">");
