@@ -74,30 +74,44 @@
     <div class="row">
         <div class="col">
             <h1> Excluir Site </h1>
-            <form action="" method="">
+            <form action="http://localhost:5678/deletesite/" method="get">
                 <label for="titulo">Titulo do Tutorial</label>
                 <input
                     required
-                    name="titulo"
-                    id="titulo"
+                    name="id"
+                    value=""
                     class="input-tutorial"
                 />
 
-            <input type="submit" value="Enviar" onclick="addService();" />
+            <input type="submit" value="Enviar" />
             </form>
         </div>
 
         <div class="col">
             <h1> Excluir Tutorial </h1>
-            <form action="" method="">
+            <form action="http://localhost:5678/deletetutorial/" method="get">
                 <label for="nome">Nome do Site</label>
                 <input
                     required
-                    name="nome"
-                    id="nome"
+                    name="id"
+                    value=""
                     class="input-tutorial"
                 />
-            <input type="submit" value="Enviar" onclick="addService();" />
+            <input type="submit" value="Enviar" />
+            </form>
+        </div>
+        
+        <div class="col">
+            <h1> Excluir Administrador </h1>
+            <form action="http://localhost:5678/deleteadm/" method="get">
+                <label for="nome">User</label>
+                <input
+                    required
+                    name="id"
+                    value=""
+                    class="input-tutorial"
+                />
+            <input type="submit" value="Enviar" />
             </form>
         </div>
     </div>

@@ -58,6 +58,23 @@ public class AdmDAO extends DAO {
 		return adm;
 	}
 	
+	public Adm getUser(String usuario) {
+        Adm adm = null;
+        
+        try {
+            Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            String sql = "SELECT * FROM adm WHERE usuario="+usuario;
+            ResultSet rs = st.executeQuery(sql);    
+            if(rs.next()){            
+                 adm = new Adm(rs.getInt("id"), rs.getString("nome"), rs.getString("senha"), rs.getString("usuario"), rs.getString("email"));
+            }
+            st.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return adm;
+    }
+	
 	public Adm loginValidation(String usuario, String senha) {
         Adm adm = null;
         try {
@@ -140,15 +157,15 @@ public class AdmDAO extends DAO {
     }
 	
 	public boolean delete(int id) {
-		boolean status = false;
-		try {  
-			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM adm WHERE id = " + id);
-			st.close();
-			status = true;
-		} catch (SQLException u) {  
-			throw new RuntimeException(u);
-		}
-		return status;
-	}
+        boolean status = false;
+        try {  
+            Statement st = conexao.createStatement();
+            st.executeUpdate("DELETE FROM adm WHERE id = " + id);
+            st.close();
+            status = true;
+        } catch (SQLException u) {  
+            throw new RuntimeException(u);
+        }
+        return status;
+    }
 }
